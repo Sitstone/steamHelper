@@ -20,6 +20,7 @@ public class UserInfo extends DataSupport{
     private String lastlogofftime;
     private String avatarurl;
 
+
     public String getSteamid() {
         return steamid;
     }

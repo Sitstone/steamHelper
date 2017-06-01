@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_gamelist"
+            android:icon="@drawable/games"
+            android:title="Games"
+            />
+
+        <item
+            android:id="@+id/nav_friendslist"
+            android:icon="@drawable/friends"
+            android:title="Friends"
+            />
+
+        <item
+            android:id="@+id/nav_news"
+            android:icon="@drawable/news"
+            android:title="News"
+            />
+        <item
+            android:id="@+id/nav_deleteall"
+            android:icon="@drawable/castlecrahsers"
+            android:title="Delete"
+            />
+    </group>
+
+
+
+</menu>

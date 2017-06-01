@@ -96,6 +96,7 @@ public class AchievementsActivity extends AppCompatActivity{
      * @param game
      */
     private void queryAchievement(Game game){
+
         achievementsList = game.getAchievements();
 
         if(achievementsList.size() == 0){
@@ -109,7 +110,6 @@ public class AchievementsActivity extends AppCompatActivity{
             achievementsAdapters = new AchievementsAdapter(AchievementsActivity.this, R.layout.achievement_item,achievementsList);
             achlistView.setAdapter(achievementsAdapters);
             achlistView.setSelection(0);
-            achievementsAdapters.notifyDataSetChanged();
             initTitle();
         }
 
@@ -122,7 +122,7 @@ public class AchievementsActivity extends AppCompatActivity{
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                Toast.makeText(getContext(),"Sorry, this game doesn't have any achievement", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -137,26 +137,11 @@ public class AchievementsActivity extends AppCompatActivity{
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-
-                            achievementsList = selectedGame.getAchievements();
-                            achievementsAdapters = new AchievementsAdapter(AchievementsActivity.this, R.layout.achievement_item,achievementsList);
-                            achlistView.setAdapter(achievementsAdapters);
-                            achlistView.setSelection(0);
-                            achievementsAdapters.notifyDataSetChanged();
-
-                            initTitle();
+                        queryAchievement(game);
                         }
                     });
-                }else{
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getContext(),"Sorry, this game doesn't have any achievement", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-
                 }
-              //  MainActivity.closeProgressDialog(ach_progressDialog);
+
             }
         });
     }

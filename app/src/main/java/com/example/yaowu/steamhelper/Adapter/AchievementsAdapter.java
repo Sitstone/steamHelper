@@ -46,9 +46,7 @@ public class AchievementsAdapter extends ArrayAdapter<Achievements> {
         achievementUnlockTime.setText("Unlock Time: " + achievements.getUnlocktime());
 
        //set Description
-
         achievementDescription.setText("Decription: " + achievements.getDescription());
-
 
         return view;
     }

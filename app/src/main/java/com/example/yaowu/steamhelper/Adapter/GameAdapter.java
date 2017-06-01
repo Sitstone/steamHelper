@@ -56,7 +56,7 @@ public class GameAdapter extends ArrayAdapter {
 
         achievementName.setText(game.getGameName() + "(AppID: " + game.getAppid() + ")");
 
-        achievementUnlockTime.setText("Play Time: " + game.getPlayTime());
+        achievementUnlockTime.setText("Play Time: " + game.getPlayTime() + " hours");
 
         return view;
     }

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/friend_avatar"
+        android:layout_width="32sp"
+        android:layout_height="32sp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="10sp"/>
+
+    <LinearLayout
+        android:id="@+id/f_l1"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/friend_avatar"
+        android:layout_marginLeft="20sp">
+
+        <TextView
+            android:id="@+id/friend_pname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/friend_avatar"
+            android:layout_marginLeft="20sp"/>
+
+        <TextView
+            android:id="@+id/friend_rname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/friend_avatar"
+            android:layout_below="@+id/friend__pname"
+            android:layout_marginLeft="20sp"/>
+
+        <Button
+            android:id="@+id/friend_profile_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/friend_avatar"
+            android:layout_below="@+id/friend_rname"
+            android:layout_marginLeft="15sp"
+            android:text="Profile"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/f_l2"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/f_l1"
+        android:layout_marginLeft="20sp">
+
+        <TextView
+            android:id="@+id/friend_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20sp"/>
+
+        <TextView
+            android:id="@+id/friend_time_created"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below ="@id/friend_location"
+            android:layout_marginLeft="20sp"/>
+
+        <TextView
+            android:id="@+id/friend_last_logoff"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/friend_time_created"
+            android:layout_marginLeft="20sp"/>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

@@ -12,8 +12,6 @@ import com.example.yaowu.steamhelper.db.UserInfo;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONStringer;
-
 /**
  * Created by yaowu on 2017/5/24.
  */
@@ -40,7 +38,8 @@ public class Utility {
                     game.setGameName(gameObject.getString("name"));
                     game.setPlayTime(gameObject.getDouble("playtime_forever"));
                     game.setIconhash(gameObject.getString("img_icon_url"));
-                    game.save();
+
+                    game.saveOrUpdate("appid = ?", String.valueOf(game.getAppid())); // update if exist, or insert
                 }
 
                 return true;
@@ -62,7 +61,9 @@ public class Utility {
                 Friend friend = new Friend();
                 friend.setFriendsteamid(friendObject.getString("steamid"));
                 friend.setFriendsince(friendObject.getString("friend_since"));
-                friend.save();
+
+                friend.saveOrUpdate("friendsteamid = ?", String.valueOf(friend.getFriendsteamid())); // update if exist, or insert
+
             }
             return true;
         } catch (JSONException e) {
@@ -100,8 +101,12 @@ public class Utility {
                 achievements.setDescription(achievementObject.getString("description"));
                 achievements.setUnlocktime(achievementObject.getString("unlocktime"));
                 game.setAchievements(achievements);
-                achievements.save();
+
+                //update based on name
+                achievements.saveOrUpdate("achievementName=?", achievements.getAchievementName());
             }
+            //create relation: one game to multiple achievements
+            game.save();
 
             return true;
 
@@ -126,15 +131,16 @@ public class Utility {
                 UserInfo userInfo = new UserInfo();
                 userInfo.setPersonaname(userObeject.getString("personaname"));
                 userInfo.setSteamid(userObeject.getString("steamid"));
-                userInfo.setLastlogofftime(userObeject.getString("lastlogoff"));
+                userInfo.setLastlogofftime(userObeject.optString("lastlogoff"));
                 userInfo.setProfileurl(userObeject.getString("profileurl"));
-                userInfo.setAvatarurl(userObeject.getString("avatarfull"));
+                userInfo.setAvatarurl(userObeject.optString("avatarfull"));
                 userInfo.setRealname(userObeject.optString("realname"));
                 userInfo.setTimecreated(userObeject.getString("timecreated"));
                 userInfo.setLoccountrycode(userObeject.optString("loccountrycode"));
                 userInfo.setLocstatecode(userObeject.optString("locstatecode"));
                 userInfo.setLoccityid(userObeject.optString("loccityid"));
-                userInfo.save();
+
+                userInfo.saveOrUpdate("steamid=?", userInfo.getSteamid());
             }
             return true;
 

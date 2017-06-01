@@ -4,8 +4,16 @@ import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -22,6 +30,7 @@ import com.example.yaowu.steamhelper.Adapter.GameAdapter;
 import com.example.yaowu.steamhelper.db.Game;
 import com.example.yaowu.steamhelper.db.UserInfo;
 import com.example.yaowu.steamhelper.util.HttpUtil;
+import com.example.yaowu.steamhelper.util.NavigationIniti;
 import com.example.yaowu.steamhelper.util.Utility;
 
 
@@ -48,7 +57,8 @@ public class GameListFragment extends Fragment {
 
     private ProgressDialog progressDialog;
 
-    private TextView titleText;
+
+
 
     private ListView listView;
 
@@ -70,11 +80,10 @@ public class GameListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.game_list,container,false);
         listView = (ListView) view.findViewById(R.id.game_listview);
-        titleText = (TextView) view.findViewById(R.id.title_text);
-        titleText.setText("Owned Games");
-
         return view;
     }
+
+
 
     @Override
     public void onActivityCreated(final Bundle savedInstanceState) {
@@ -93,6 +102,9 @@ public class GameListFragment extends Fragment {
         queryMyInfo();
         queryGame();
     }
+
+
+
 
     /**
      * initialize the title of Game Activity(User info)
@@ -144,7 +156,7 @@ public class GameListFragment extends Fragment {
 
     private void queryGameFromServer(String address){
 
-        MainActivity.showProgressDialog(getContext(), progressDialog);
+       // MainActivity.showProgressDialog(getContext(), progressDialog);
 
         HttpUtil.sendOkHttpRequest(address, new Callback() {
             @Override
@@ -162,12 +174,12 @@ public class GameListFragment extends Fragment {
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            MainActivity.closeProgressDialog(progressDialog);
+                          //  MainActivity.closeProgressDialog(progressDialog);
                             queryGame();
                         }
                     });
                 }
-                MainActivity.closeProgressDialog(progressDialog);
+              //  MainActivity.closeProgressDialog(progressDialog);
             }
         });
     }
@@ -198,9 +210,7 @@ public class GameListFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) throws IOException {
                 String responseText = response.body().string();
-                boolean result = false;
-
-                result = Utility.handleUserInfo(responseText);
+                boolean result = Utility.handleUserInfo(responseText);
                 if(result){
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
@@ -215,26 +225,6 @@ public class GameListFragment extends Fragment {
 
     }
 
-
-
-    /**
-     * query friend list
-     */
-    private void queryFriends(){
-
-    }
-    private void queryFriendsFromServer(String address){
-
-    }
-
-
-    private void queryUserInfo(){
-
-    }
-
-    private void queryUserInfoFromServer(String address){
-
-    }
 
 
 
