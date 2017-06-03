@@ -25,6 +25,11 @@
             android:icon="@drawable/castlecrahsers"
             android:title="Delete"
             />
+        <item
+            android:id="@+id/nav_price"
+            android:icon="@drawable/price"
+            android:title="Search Price"
+            />
     </group>
 
 

@@ -22,6 +22,7 @@ import com.example.yaowu.steamhelper.util.Utility;
 import org.litepal.crud.DataSupport;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 import okhttp3.Call;
@@ -83,7 +84,6 @@ public class FriendsActivity extends AppCompatActivity {
         }else{
 
             Log.d("friends size", String.valueOf(friendList.size()));
-
             friendsAdapter = new FriendsAdapter(FriendsActivity.this, R.layout.friend_item, friendList);
             friend_list_view.setAdapter(friendsAdapter);
             friend_list_view.setSelection(0);

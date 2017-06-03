@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.example.yaowu.steamhelper.FriendsActivity;
 import com.example.yaowu.steamhelper.MainActivity;
+import com.example.yaowu.steamhelper.PriceActivity;
 import com.example.yaowu.steamhelper.R;
 import com.example.yaowu.steamhelper.db.Achievements;
 import com.example.yaowu.steamhelper.db.Friend;
@@ -51,6 +52,12 @@ public class NavigationIniti {
                         DataSupport.deleteAll(Achievements.class);
                         DataSupport.deleteAll(UserInfo.class);
                         break;
+                    case (R.id.nav_price):
+                        item.setChecked(true);
+                        Intent price_intent = new Intent(activity, PriceActivity.class);
+                        activity.startActivity(price_intent);
+                        drawerLayout.closeDrawers();
+
                     default:
 
                 }
